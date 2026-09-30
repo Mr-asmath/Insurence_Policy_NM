@@ -1,87 +1,95 @@
-Multi-Line Insurance Policy and Claims Management System
-📋 Summary
-A comprehensive Salesforce-based solution for managing multi-line insurance operations (Vehicle, Property, and Life insurance) that replaces legacy systems with a unified, automated platform. The solution streamlines policy quoting, issuance, and claims handling while providing a 360-degree customer view.
+# Multi-Line Insurance Policy and Claims Management System
 
-🎯 Key Objectives
-Objective	Solution Component
-Flexible Data Model	Custom Objects with Record Types & Field Sets
-Guided Quoting Process	Multi-Screen Flows for each policy type
-Claims Management Dashboard	Lightning Web Components (LWC) + Apex Controller
-Automated Claims Routing	Record-Triggered Flows based on policy type
-Claims Approval Workflow	Multi-step Approval Process with automation
-Data Validation	Validation Rules & Field-level enforcement
-🏗️ Solution Architecture
-text
-┌─────────────────────────────────────────────────────────────┐
+## Overview
+A comprehensive Salesforce-based solution for managing multi-line insurance operations across Vehicle, Property, and Life insurance. The platform replaces legacy systems with a unified, automated environment that streamlines policy quoting, issuance, and claims handling while delivering a 360-degree customer view.
+
+## Key Objectives
+
+| Objective | Solution Component |
+| --- | --- |
+| Flexible Data Model | Custom Objects with Record Types and Field Sets |
+| Guided Quoting Process | Multi-screen Flow for each policy type |
+| Claims Management Dashboard | Lightning Web Components (LWC) + Apex Controller |
+| Automated Claims Routing | Record-triggered Flows based on policy type |
+| Claims Approval Workflow | Multi-step approval process with automation |
+| Data Validation | Validation Rules and field-level enforcement |
+
+## Solution Architecture
+
+```text
+┌──────────────────────────────────────────────────────────────┐
 │                    SALESFORCE PLATFORM                       │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │   Policy    │  │    Claim    │  │      Contact        │  │
-│  │   Object    │──│   Object    │──│      (Customer)     │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
+├──────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌──────────────────────┐ │
+│  │    Policy   │  │    Claim    │  │      Contact         │ │
+│  │    Object   │──│    Object   │──│     (Customer)       │ │
+│  └─────────────┘  └─────────────┘  └──────────────────────┘ │
 │         │               │                    │               │
 │         ▼               ▼                    ▼               │
-│  ┌─────────────────────────────────────────────────────┐    │
-│  │              RECORD TYPES                            │    │
-│  │   Auto | Property | Life  │  Accident | Property    │    │
-│  └─────────────────────────────────────────────────────┘    │
-├─────────────────────────────────────────────────────────────┤
-│  AUTOMATION LAYER                                            │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐   │
-│  │ Screen Flows │  │ Record-Trigg │  │ Approval Process │   │
-│  │ (Quoting)    │  │ Flows        │  │ (High Value)     │   │
-│  └──────────────┘  └──────────────┘  └──────────────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│  PROGRAMMATIC LAYER                                          │
+│  ┌─────────────────────────────────────────────────────────┐ │
+│  │                   Record Types                          │ │
+│  │   Auto | Property | Life  │  Accident | Property      │ │
+│  └─────────────────────────────────────────────────────────┘ │
+├──────────────────────────────────────────────────────────────┤
+│                     Automation Layer                         │
+│  ┌───────────────┐  ┌───────────────┐  ┌──────────────────┐ │
+│  │ Screen Flows │  │ Record-Trigger│  │ Approval Process │ │
+│  │ (Quoting)     │  │ Flows         │  │ (High Value)     │ │
+│  └───────────────┘  └───────────────┘  └──────────────────┘ │
+├──────────────────────────────────────────────────────────────┤
+│                    Programmatic Layer                        │
 │  ┌──────────────────────┐  ┌──────────────────────────────┐ │
 │  │ PremiumCalculator    │  │ ClaimsAdjusterController     │ │
-│  │ (Apex - Rating)      │  │ (Apex - Dashboard)           │ │
+│  │ (Apex - Rating)      │  │ (Apex - Dashboard)          │ │
 │  └──────────────────────┘  └──────────────────────────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│  UI LAYER (LWC)                                              │
+├──────────────────────────────────────────────────────────────┤
+│                        UI Layer (LWC)                         │
 │  ┌──────────────────────┐  ┌──────────────────────────────┐ │
 │  │ claimsDashboardLwc   │──│ claimTileLwc                 │ │
 │  │ (Main Dashboard)     │  │ (Reusable Tile)              │ │
 │  └──────────────────────┘  └──────────────────────────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│  SECURITY LAYER                                              │
-│  ┌────────────┐ ┌────────────┐ ┌─────────────────────────┐  │
-│  │ Agent PS   │ │ Adjuster PS│ │ Manager PS              │  │
-│  │ (Quoting)  │ │ (Claims)   │ │ (Reporting/Approvals)   │  │
-│  └────────────┘ └────────────┘ └─────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-📦 Milestone Overview
-Milestone	Focus Area	Key Deliverables
-M1	Core Data Model & Policy Configuration	Policy/Claim Objects, Record Types, Field Sets, Validation Rules, AutoQuoting Screen Flow
-M2	Complex Policy Issuance & Claim Routing	PremiumCalculator Apex, Claims Routing Record-Triggered Flow, Queue Assignment
-M3	Claims Adjuster LWC Dashboard	ClaimsAdjusterController Apex, claimsDashboardLwc, claimTileLwc
-M4	Advanced Processing, Security & Testing	Approval Process, Submission Flows, Test Class (95%+), Sharing Rules, Permission Sets
-🔧 Technology Stack
-Category	Technologies
-Declarative	Screen Flows, Record-Triggered Flows, Approval Processes, Validation Rules, Record Types, Field Sets
-Programmatic	Apex Classes, Apex Test Classes, SOQL
-UI	Lightning Web Components (LWC), SLDS
-Security	Permission Sets, Sharing Rules, Field-Level Security
-Integration	Apex Callouts (simulated), Invocable Methods
-✨ Key Features
-Multi-Line Support: Single platform for Auto, Property, and Life insurance
+├──────────────────────────────────────────────────────────────┤
+│                      Security Layer                           │
+│  ┌────────────┐  ┌────────────┐  ┌────────────────────────┐ │
+│  │ Agent PS   │  │ Adjuster PS│  │ Manager PS           │ │
+│  │ (Quoting)  │  │ (Claims)   │  │ (Reporting/Approvals)│ │
+│  └────────────┘  └────────────┘  └────────────────────────┘ │
+└──────────────────────────────────────────────────────────────┘
+```
 
-Guided Quoting: Step-by-step Screen Flows with policy-specific data capture
+## Milestone Overview
 
-Dynamic Premium Calculation: Apex-based rating engine with state and vehicle age factors
+| Milestone | Focus Area | Key Deliverables |
+| --- | --- | --- |
+| M1 | Core Data Model & Policy Configuration | Policy/Claim Objects, Record Types, Field Sets, Validation Rules, AutoQuoting Screen Flow |
+| M2 | Complex Policy Issuance & Claim Routing | PremiumCalculator Apex, Claims Routing Record-Triggered Flow, Queue Assignment |
+| M3 | Claims Adjuster LWC Dashboard | ClaimsAdjusterController Apex, claimsDashboardLwc, claimTileLwc |
+| M4 | Advanced Processing, Security & Testing | Approval Process, Submission Flows, Test Class (95%+), Sharing Rules, Permission Sets |
 
-Intelligent Claims Routing: Automatic queue assignment based on policy type
+## Technology Stack
 
-Adjuster Dashboard: Real-time claim visibility with client-side filtering
+| Category | Technologies |
+| --- | --- |
+| Declarative | Screen Flows, Record-Triggered Flows, Approval Processes, Validation Rules, Record Types, Field Sets |
+| Programmatic | Apex Classes, Apex Test Classes, SOQL |
+| UI | Lightning Web Components (LWC), SLDS |
+| Security | Permission Sets, Sharing Rules, Field-Level Security |
+| Integration | Apex Callouts (simulated), Invocable Methods |
 
-Multi-Level Approvals: Sequential approval for high-value claims (>$50,000)
+## Key Features
 
-Territory-Based Sharing: State-specific claim visibility rules
+- Multi-line support for Auto, Property, and Life insurance
+- Guided quoting using step-by-step policy-specific flows
+- Dynamic premium calculation using Apex-based rating logic
+- Intelligent claims routing with automatic queue assignment
+- Adjustable dashboard with client-side filtering for claims teams
+- Multi-level approvals for high-value claims over $50,000
+- Territory-based sharing rules by state and region
+- Role-based access for agents, adjusters, and managers
 
-Role-Based Access: Distinct permission sets for Agents, Adjusters, and Managers
+## Data Model
 
-📊 Data Model
-text
+```text
 ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
 │    Contact      │       │     Policy      │       │      Claim      │
 │   (Customer)    │◄──────│                 │◄──────│                 │
@@ -95,45 +103,40 @@ text
 │                 │       │ Square Ft (Prop)│       │ Description     │
 │                 │       │ Beneficiary(Life)│       │                 │
 └─────────────────┘       └─────────────────┘       └─────────────────┘
-🚀 Deployment Order
-Objects & Fields → Policy, Claim, Custom Fields
+```
 
-Record Types → Auto, Property, Life for both objects
+## Deployment Order
 
-Field Sets → Vehicle, Property, Life field sets
+1. Create objects and fields: Policy, Claim, custom fields
+2. Configure record types: Auto, Property, Life for both objects
+3. Define field sets: Vehicle, Property, Life
+4. Add validation rules for data integrity and VIN checks
+5. Build Apex classes: PremiumCalculator, ClaimsAdjusterController
+6. Implement flows: AutoQuotingFlow, Claims Routing, Submission, Approver Screen
+7. Develop LWC components: claimsDashboardLwc, claimTileLwc
+8. Configure approval process: High Value Claim Approval
+9. Set up security: permission sets, sharing rules
+10. Complete testing: ClaimsAdjusterControllerTest
 
-Validation Rules → VIN validation, data integrity
+## Success Metrics
 
-Apex Classes → PremiumCalculator, ClaimsAdjusterController
+- ✅ 95%+ Apex test coverage
+- ✅ Reduced quoting time through guided flows
+- ✅ Automated claim routing without manual assignment
+- ✅ Real-time adjuster dashboard visibility
+- ✅ Multi-level approval automation for high-value claims
 
-Flows → AutoQuotingFlow, Claims Routing, Submission, Approver Screen
+## User Roles
 
-LWC Components → claimsDashboardLwc, claimTileLwc
+| Role | Access Level | Key Permissions |
+| --- | --- | --- |
+| Insurance Agent | Quoting Only | Create and read policy, read claim, flow access |
+| Claims Adjuster | Claim Handling | Read policy, edit claim, dashboard access |
+| Claims Manager | Reporting & Approvals | Full claim access, manage approvals, run reports |
 
-Approval Process → High Value Claim Approval
+## Project Structure
 
-Security → Permission Sets, Sharing Rules
-
-Testing → ClaimsAdjusterControllerTest
-
-📈 Success Metrics
-✅ 95%+ Apex test coverage
-
-✅ Reduced quoting time through guided flows
-
-✅ Automated claim routing (zero manual assignment)
-
-✅ Real-time adjuster dashboard visibility
-
-✅ Multi-level approval automation for high-value claims
-
-👥 User Roles
-Role	Access Level	Key Permissions
-Insurance Agent	Quoting Only	Create/Read Policy, Read Claim, Flow User
-Claims Adjuster	Claim Handling	Read Policy, Edit Claim, Dashboard Access
-Claims Manager	Reporting/Approvals	Full Claim Access, Manage Approvals, Run Reports
-📝 Project Structure
-text
+```text
 force-app/main/default/
 ├── objects/
 │   ├── Policy__c/
@@ -162,9 +165,14 @@ force-app/main/default/
 │   ├── Insurance_Agent_Access.permissionset-meta.xml
 │   ├── Claims_Adjuster_Access.permissionset-meta.xml
 │   └── Claims_Manager_Access.permissionset-meta.xml
-└── sharingRules/
-    └── Claim__c.sharingRules-meta.xml
-Version: 1.0
-API Version: 63.0
-Platform: Salesforce
-Last Updated: 2024
+├── sharingRules/
+│   └── Claim__c.sharingRules-meta.xml
+└── README.md
+```
+
+## Metadata
+
+- Version: 1.0
+- API Version: 63.0
+- Platform: Salesforce
+- Last Updated: 2024
