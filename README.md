@@ -170,9 +170,3 @@ force-app/main/default/
 └── README.md
 ```
 
-## Metadata
-
-- Version: 1.0
-- API Version: 63.0
-- Platform: Salesforce
-- Last Updated: 2024
