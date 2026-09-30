@@ -1,0 +1,6 @@
+{
+  "name": "Multi-Line Insurance & Claims Management System",
+  "description": "Unified policy quoting, automated claims routing, and LWC claims adjuster dashboard for vehicle, property, and life insurance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
